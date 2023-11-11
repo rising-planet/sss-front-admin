@@ -61,7 +61,7 @@
         중복 코드가 너무 많음, slot 관련 제거할 방법 찾기
         select 컴포넌트에 static 데이터 연결하기
       -->
-      <v-container class="py-8 px-6" fluid>
+      <v-container class="py-0 px-6" fluid>
         <SelectContainer>
           <template v-slot:header>
             <h3>검색옵션</h3>
@@ -70,7 +70,7 @@
             v-for="selectItem in selectComponentList"
             :key="selectItem.selectKey"
           >
-            <v-col cols="6">
+            <v-col class="pl-3 py-0" cols="6">
               <Select
                 @update:modelValue="selectEmitEvent"
                 :label="selectItem.label"
@@ -79,21 +79,27 @@
               />
             </v-col>
           </template>
-          <!-- </template> -->
         </SelectContainer>
+        <TableContainer>
+          <Table />
+        </TableContainer>
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Select from "./components/Select.vue";
-import SelectContainer from "./components/SelectContainer.vue";
+import Select from "@/components/Select.vue";
+import SelectContainer from "@/components/SelectContainer.vue";
+import Table from "@/components/Table.vue";
+import TableContainer from "@/components/TableContainer.vue";
 
 export default {
   components: {
     Select,
     SelectContainer,
+    Table,
+    TableContainer,
   },
   data: () => ({
     selectComponentList: [

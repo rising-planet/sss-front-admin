@@ -1,5 +1,6 @@
 <template>
   <v-select
+    class="pt-0 pb-0"
     @update:modelValue="$emit('update:modelValue', selectKey, $event)"
     :label="label"
     :items="items"

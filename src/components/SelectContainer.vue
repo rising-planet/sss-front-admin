@@ -1,7 +1,7 @@
 <template>
   <v-container class="rounded elevation-5">
-    <v-row class="mb-6">
-      <v-col cols="12">
+    <v-row>
+      <v-col class="pl-3 pt-3" cols="12">
         <slot name="header"></slot>
       </v-col>
     </v-row>
