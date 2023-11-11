@@ -10,6 +10,11 @@
         <v-toolbar-title></v-toolbar-title>
       </v-toolbar>
     </template>
+    <template v-slot:item.event_type="{ value }">
+      <v-chip :color="getColor(value)">
+        {{ value }}
+      </v-chip>
+    </template>
     <template v-slot:item.actions="{ item }">
       <v-icon size="small" class="me-2" @click="editItem(item)">
         mdi-dots-vertical
@@ -84,7 +89,15 @@ export default {
           )
       );
     },
-
+    getColor(type) {
+      const result = {
+        "1+1": "red",
+        "2+1": "blue",
+        "3+1": "orange",
+        "4+1": "dark",
+      };
+      return result[type] ?? "green";
+    },
     editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
