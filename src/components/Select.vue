@@ -5,6 +5,7 @@
     :label="label"
     :items="items"
     variant="outlined"
+    density="compact"
   ></v-select>
 </template>
 

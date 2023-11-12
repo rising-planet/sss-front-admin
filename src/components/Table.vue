@@ -6,9 +6,17 @@
     show-select
   >
     <template v-slot:top>
-      <v-toolbar class="bg-white">
-        <v-toolbar-title></v-toolbar-title>
-      </v-toolbar>
+      <v-row class="d-flex justify-end align-center p-8 h-100 custom-height">
+        <v-responsive max-width="213px">
+          <v-text-field
+            density="compact"
+            label="이름으로 탐색"
+            variant="outlined"
+            hide-details
+          ></v-text-field>
+        </v-responsive>
+        <v-btn class="bg-purple-darken-2 mx-4">상품 등록</v-btn>
+      </v-row>
     </template>
     <template v-slot:item.remote_product_id="{ value }">
       <div class="d-flex">
@@ -144,3 +152,8 @@ export default {
   },
 };
 </script>
+<style>
+.custom-height {
+  min-height: 80px;
+}
+</style>
