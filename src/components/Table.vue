@@ -11,7 +11,7 @@
       </v-toolbar>
     </template>
     <template v-slot:item.remote_product_id="{ value }">
-      <div class="flex">
+      <div class="d-flex">
         <img
           :src="getProductImageSrc(value)"
           alt="Product Image"
@@ -48,12 +48,19 @@ export default {
         align: "start",
         sortable: false,
         key: "remote_product_id",
+        width: "458px",
       },
-      { title: "행사종류", key: "event_type" },
-      { title: "개당 가격", key: "price" },
-      { title: "행사 월", key: "month" },
-      { title: "편의점", key: "store_id" },
-      { title: "Actions", key: "actions", sortable: false },
+      { title: "행사종류", align: "start", key: "event_type", width: "160px" },
+      { title: "개당 가격", align: "start", key: "price", width: "120px" },
+      { title: "행사 월", align: "center", key: "month", width: "120px" },
+      { title: "편의점", align: "center", key: "store_id", width: "120px" },
+      {
+        title: "Actions",
+        align: "center",
+        key: "actions",
+        width: "112px",
+        sortable: false,
+      },
     ],
     desserts: [],
     editedIndex: -1,
