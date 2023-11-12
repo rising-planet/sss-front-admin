@@ -10,6 +10,16 @@
         <v-toolbar-title></v-toolbar-title>
       </v-toolbar>
     </template>
+    <template v-slot:item.remote_product_id="{ value }">
+      <div class="flex">
+        <img
+          :src="getProductImageSrc(value)"
+          alt="Product Image"
+          style="width: 25px; height: 25px"
+        />
+        <span class="pl-2">{{ getProductName(value) }} </span>
+      </div>
+    </template>
     <template v-slot:item.event_type="{ value }">
       <v-chip :color="getColor(value)">
         {{ value }}
@@ -37,7 +47,7 @@ export default {
         title: "제품명",
         align: "start",
         sortable: false,
-        key: "product_name",
+        key: "remote_product_id",
       },
       { title: "행사종류", key: "event_type" },
       { title: "개당 가격", key: "price" },
@@ -103,13 +113,26 @@ export default {
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
-
     close() {
       this.dialog = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
+    },
+    getProductImageSrc(remote_product_id) {
+      const findedProduct = this.desserts.find(
+        (obj) => obj.remote_product_id === remote_product_id
+      );
+      if (!findedProduct) return "";
+      return findedProduct.product_image;
+    },
+    getProductName(remote_product_id) {
+      const findedProduct = this.desserts.find(
+        (obj) => obj.remote_product_id === remote_product_id
+      );
+      if (!findedProduct) return "-";
+      return findedProduct.product_name;
     },
   },
 };
