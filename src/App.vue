@@ -1,58 +1,6 @@
 <template>
   <v-app class="bg-default" id="inspire">
-    <v-navigation-drawer v-model="drawer">
-      <v-list>
-        <v-list-item
-          prepend-avatar="https://cdn.vuetifyjs.com/images/john.png"
-          title="상승성"
-        >
-        </v-list-item>
-      </v-list>
-
-      <v-divider></v-divider>
-      <v-list v-model:opened="open">
-        <v-list-item prepend-icon="mdi-home" title="사용자"></v-list-item>
-        <v-list-item prepend-icon="mdi-home" title="커뮤니티"></v-list-item>
-
-        <v-list-group value="행사제품">
-          <template v-slot:activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              prepend-icon="mdi-account-circle"
-              title="행사제품"
-            ></v-list-item>
-          </template>
-
-          <v-list-group value="Admin">
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props" title="Admin"></v-list-item>
-            </template>
-
-            <v-list-item
-              v-for="([title, icon], i) in admins"
-              :key="i"
-              :title="title"
-              :prepend-icon="icon"
-              :value="title"
-            ></v-list-item>
-          </v-list-group>
-
-          <v-list-group value="Actions">
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props" title="Actions"></v-list-item>
-            </template>
-
-            <v-list-item
-              v-for="([title, icon], i) in cruds"
-              :key="i"
-              :value="title"
-              :title="title"
-              :prepend-icon="icon"
-            ></v-list-item>
-          </v-list-group>
-        </v-list-group>
-      </v-list>
-    </v-navigation-drawer>
+    <SideBar />
     <AppBar />
     <v-main>
       <!--
@@ -87,15 +35,17 @@
 </template>
 
 <script>
+import AppBar from "@/components/app-bar/AppBar";
+import SideBar from "@/components/side-bar/SideBar";
 import Select from "@/components/Select.vue";
 import SelectContainer from "@/components/SelectContainer.vue";
 import Table from "@/components/Table.vue";
 import TableContainer from "@/components/TableContainer.vue";
-import AppBar from "@/components/app-bar/AppBar";
 
 export default {
   components: {
     AppBar,
+    SideBar,
     Select,
     SelectContainer,
     Table,
@@ -127,25 +77,6 @@ export default {
         items: ["공개", "비공개"],
         selectedItem: null,
       },
-    ],
-    cards: ["Today", "Yesterday"],
-    drawer: null,
-    links: [
-      ["mdi-inbox-arrow-down", "Inbox"],
-      ["mdi-send", "Send"],
-      ["mdi-delete", "Trash"],
-      ["mdi-alert-octagon", "Spam"],
-    ],
-    open: ["Users"],
-    admins: [
-      ["Management", "mdi-account-multiple-outline"],
-      ["Settings", "mdi-cog-outline"],
-    ],
-    cruds: [
-      ["Create", "mdi-plus-outline"],
-      ["Read", "mdi-file-outline"],
-      ["Update", "mdi-update"],
-      ["Delete", "mdi-delete"],
     ],
   }),
   methods: {
