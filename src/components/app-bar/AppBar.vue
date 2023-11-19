@@ -1,6 +1,6 @@
 <template>
-  <v-app-bar class="d-flex justify-space-around bg-default">
-    <v-container class="px-6" fluid>
+  <v-app-bar>
+    <v-container class="px-6 bg-default" fluid>
       <v-row>
         <v-col cols="6">
           <v-text-field
@@ -37,6 +37,6 @@ export default {
   name: "AppBar",
 };
 </script>
-<style>
-@import "~@/assets/scss/index.scss";
+<style lang="scss">
+@import "@/assets/scss/index.scss";
 </style>
