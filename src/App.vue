@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app class="bg-default" id="inspire">
     <v-navigation-drawer v-model="drawer">
       <v-list>
         <v-list-item
@@ -166,3 +166,6 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+@import "@/assets/scss/index.scss";
+</style>

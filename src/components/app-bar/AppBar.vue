@@ -1,6 +1,6 @@
 <template>
   <v-app-bar>
-    <v-container class="px-6 bg-default" fluid>
+    <v-container class="bg-default px-6" fluid>
       <v-row>
         <v-col cols="6">
           <v-text-field
