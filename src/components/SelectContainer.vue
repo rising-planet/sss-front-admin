@@ -1,5 +1,5 @@
 <template>
-  <v-container class="rounded elevation-5">
+  <v-container class="rounded elevation-5 bg-white mb-6">
     <v-row>
       <v-col class="pl-3 pt-3" cols="12">
         <slot name="header"></slot>

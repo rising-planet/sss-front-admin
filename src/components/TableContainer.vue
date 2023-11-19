@@ -1,5 +1,5 @@
 <template>
-  <v-container class="rounded elevation-5">
+  <v-container class="rounded elevation-5 bg-white px-0">
     <slot></slot>
   </v-container>
 </template>

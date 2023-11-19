@@ -18,6 +18,7 @@
         <v-btn class="bg-purple-darken-2 mx-4">상품 등록</v-btn>
       </v-row>
     </template>
+
     <template v-slot:item.remote_product_id="{ value }">
       <div class="d-flex">
         <img
@@ -56,7 +57,7 @@ export default {
         align: "start",
         sortable: false,
         key: "remote_product_id",
-        width: "458px",
+        width: "350px",
       },
       { title: "행사종류", align: "start", key: "event_type", width: "160px" },
       { title: "개당 가격", align: "start", key: "price", width: "120px" },
@@ -152,7 +153,13 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="scss" scoped>
+@import "@/assets/scss/index.scss";
+
+::v-deep thead {
+  color: black;
+  background-color: $light-color;
+}
 .custom-height {
   min-height: 80px;
 }
