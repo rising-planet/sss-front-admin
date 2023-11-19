@@ -53,9 +53,7 @@
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar>
-      <v-app-bar-title>상승성</v-app-bar-title>
-    </v-app-bar>
+    <AppBar />
     <v-main>
       <!--
         중복 코드가 너무 많음, slot 관련 제거할 방법 찾기
@@ -93,9 +91,11 @@ import Select from "@/components/Select.vue";
 import SelectContainer from "@/components/SelectContainer.vue";
 import Table from "@/components/Table.vue";
 import TableContainer from "@/components/TableContainer.vue";
+import AppBar from "@/components/app-bar/AppBar";
 
 export default {
   components: {
+    AppBar,
     Select,
     SelectContainer,
     Table,
@@ -160,6 +160,9 @@ export default {
       }
       findedSelectItem.selectedItem = updateValue;
     },
+  },
+  created() {
+    console.log(process.env.VUE_APP_TITLE);
   },
 };
 </script>
