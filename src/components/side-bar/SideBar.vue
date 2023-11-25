@@ -19,10 +19,16 @@
       </v-col>
     </v-row>
     <v-list v-model:opened="open">
-      <v-list-item prepend-icon="mdi-home" title="사용자"></v-list-item>
-      <v-list-item prepend-icon="mdi-home" title="커뮤니티"></v-list-item>
+      <v-list-item prepend-icon="mdi-home" title="사용자"> </v-list-item>
+      <v-list-group prepend-icon="mdi-home" value="커뮤니티">
+        <template v-slot:activator="{ props }">
+          <v-list-item v-bind="props">커뮤니티</v-list-item>
+        </template>
+        <v-list-item> test1 </v-list-item>
+        <v-list-item> test2 </v-list-item>
+      </v-list-group>
 
-      <v-list-group value="행사제품">
+      <v-list-item prepend-icon="mdi-home" title="행사제품">
         <template v-slot:activator="{ props }">
           <v-list-item
             v-bind="props"
@@ -31,7 +37,7 @@
           ></v-list-item>
         </template>
 
-        <v-list-group value="Admin">
+        <!-- <v-list-group value="Admin">
           <template v-slot:activator="{ props }">
             <v-list-item v-bind="props" title="Admin"></v-list-item>
           </template>
@@ -43,9 +49,9 @@
             :prepend-icon="icon"
             :value="title"
           ></v-list-item>
-        </v-list-group>
+        </v-list-group> -->
 
-        <v-list-group value="Actions">
+        <!-- <v-list-group value="Actions">
           <template v-slot:activator="{ props }">
             <v-list-item v-bind="props" title="Actions"></v-list-item>
           </template>
@@ -57,8 +63,8 @@
             :title="title"
             :prepend-icon="icon"
           ></v-list-item>
-        </v-list-group>
-      </v-list-group>
+        </v-list-group> -->
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -67,18 +73,7 @@ export default {
   name: "SideBar",
   data: () => ({
     drawer: null,
-    admins: [
-      ["Management", "mdi-account-multiple-outline"],
-      ["Settings", "mdi-cog-outline"],
-    ],
     open: ["Users"],
-
-    cruds: [
-      ["Create", "mdi-plus-outline"],
-      ["Read", "mdi-file-outline"],
-      ["Update", "mdi-update"],
-      ["Delete", "mdi-delete"],
-    ],
   }),
 };
 </script>
