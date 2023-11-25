@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer class="bg-default" v-model="drawer" border="0">
+  <v-navigation-drawer color="transparent" v-model="drawer" border="0">
     <v-list>
       <v-list-item
         prepend-avatar="https://cdn.vuetifyjs.com/images/john.png"

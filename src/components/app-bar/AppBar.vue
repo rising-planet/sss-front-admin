@@ -1,6 +1,6 @@
 <template>
-  <v-app-bar elevation="0">
-    <v-container class="bg-default px-6" fluid>
+  <v-app-bar color="transparent" elevation="0">
+    <v-container>
       <v-row>
         <v-col cols="6">
           <v-text-field
