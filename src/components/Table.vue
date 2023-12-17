@@ -44,115 +44,154 @@
     </template>
   </v-data-table>
 </template>
-<script>
+<script setup lang="ts">
 import { Product } from "@/entities/product.entity";
-
-export default {
-  name: "Table",
-  props: ["products"],
-  data: () => ({
-    dialog: false,
-    headers: [
-      {
-        title: "제품명",
-        align: "start",
-        sortable: false,
-        key: "remote_product_id",
-        width: "350px",
-      },
-      { title: "행사종류", align: "start", key: "event_type", width: "160px" },
-      { title: "개당 가격", align: "start", key: "price", width: "120px" },
-      { title: "행사 월", align: "center", key: "month", width: "120px" },
-      { title: "편의점", align: "center", key: "store_id", width: "120px" },
-      {
-        title: "Actions",
-        align: "center",
-        key: "actions",
-        width: "112px",
-        sortable: false,
-      },
-    ],
-    desserts: [],
-    editedIndex: -1,
-    editedItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
-    },
-    defaultItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
-    },
-  }),
-
-  watch: {
-    dialog(val) {
-      val || this.close();
-    },
+import { defineEmits, defineProps, ref } from "vue";
+defineProps({
+  products: [Product],
+});
+const dialog = ref(false);
+const headers = ref([
+  {
+    title: "제품명",
+    align: "start",
+    sortable: false,
+    key: "remote_product_id",
+    width: "350px",
   },
-
-  created() {
-    this.initialize();
+  { title: "행사종류", align: "start", key: "event_type", width: "160px" },
+  { title: "개당 가격", align: "start", key: "price", width: "120px" },
+  { title: "행사 월", align: "center", key: "month", width: "120px" },
+  { title: "편의점", align: "center", key: "store_id", width: "120px" },
+  {
+    title: "Actions",
+    align: "center",
+    key: "actions",
+    width: "112px",
+    sortable: false,
   },
+]);
+const desserts = ref([]);
+const editedIndex = ref(-1);
+const editedItem = ref({
+  name: "",
+  calories: 0,
+  fat: 0,
+  carbs: 0,
+  protein: 0,
+});
+const defaultItem = ref({
+  name: "",
+  calories: 0,
+  fat: 0,
+  carbs: 0,
+  protein: 0,
+});
+// export default {
+//   name: "Table",
+//   props: ["products"],
+//   data: () => ({
+//     headers: [
+//       {
+//         title: "제품명",
+//         align: "start",
+//         sortable: false,
+//         key: "remote_product_id",
+//         width: "350px",
+//       },
+//       { title: "행사종류", align: "start", key: "event_type", width: "160px" },
+//       { title: "개당 가격", align: "start", key: "price", width: "120px" },
+//       { title: "행사 월", align: "center", key: "month", width: "120px" },
+//       { title: "편의점", align: "center", key: "store_id", width: "120px" },
+//       {
+//         title: "Actions",
+//         align: "center",
+//         key: "actions",
+//         width: "112px",
+//         sortable: false,
+//       },
+//     ],
+//     desserts: [],
+//     editedIndex: -1,
+//     editedItem: {
+//       name: "",
+//       calories: 0,
+//       fat: 0,
+//       carbs: 0,
+//       protein: 0,
+//     },
+//     defaultItem: {
+//       name: "",
+//       calories: 0,
+//       fat: 0,
+//       carbs: 0,
+//       protein: 0,
+//     },
+//   }),
 
-  methods: {
-    initialize() {
-      this.desserts = Array.from(
-        { length: 10 },
-        () =>
-          new Product(
-            1,
-            "test-product",
-            "포카칩",
-            "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
-            3000,
-            "1+1",
-            "6월"
-          )
-      );
-    },
-    getColor(type) {
-      const result = {
-        "1+1": "red",
-        "2+1": "blue",
-        "3+1": "orange",
-        "4+1": "dark",
-      };
-      return result[type] ?? "green";
-    },
-    editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
-    },
-    close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-    getProductImageSrc(remote_product_id) {
-      const findedProduct = this.products.find(
-        (obj) => obj.remote_product_id === remote_product_id
-      );
-      if (!findedProduct) return "";
-      return findedProduct.product_image;
-    },
-    getProductName(remote_product_id) {
-      const findedProduct = this.products.find(
-        (obj) => obj.remote_product_id === remote_product_id
-      );
-      if (!findedProduct) return "-";
-      return findedProduct.product_name;
-    },
-  },
-};
+//   watch: {
+//     dialog(val) {
+//       val || this.close();
+//     },
+//   },
+
+//   created() {
+//     this.initialize();
+//   },
+
+//   methods: {
+//     initialize() {
+//       this.desserts = Array.from(
+//         { length: 10 },
+//         () =>
+//           new Product(
+//             1,
+//             "test-product",
+//             "포카칩",
+//             "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+//             3000,
+//             "1+1",
+//             "6월"
+//           )
+//       );
+//     },
+//     getColor(type) {
+//       const result = {
+//         "1+1": "red",
+//         "2+1": "blue",
+//         "3+1": "orange",
+//         "4+1": "dark",
+//       };
+//       return result[type] ?? "green";
+//     },
+//     editItem(item) {
+//       this.editedIndex = this.desserts.indexOf(item);
+//       this.editedItem = Object.assign({}, item);
+//       this.dialog = true;
+//     },
+//     close() {
+//       this.dialog = false;
+//       this.$nextTick(() => {
+//         this.editedItem = Object.assign({}, this.defaultItem);
+//         this.editedIndex = -1;
+//       });
+//     },
+//     getProductImageSrc(remote_product_id) {
+//       const findedProduct = this.products.find(
+//         (obj) => obj.remote_product_id === remote_product_id
+//       );
+//       if (!findedProduct) return "";
+//       return findedProduct.product_image;
+//     },
+//     getProductName(remote_product_id) {
+//       const findedProduct = this.products.find(
+//         (obj) => obj.remote_product_id === remote_product_id
+//       );
+//       if (!findedProduct) return "-";
+//       return findedProduct.product_name;
+//     },
+//   },
+// };
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/index.scss";
