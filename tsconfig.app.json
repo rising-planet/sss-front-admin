@@ -1,0 +1,16 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "esModuleInterop": true, // ES6 모듈 사양을 준수하여 CommonJS모듈을 가져오기
+    "moduleResolution": "node", //모듈 해석?? 방식
+    "resolveJsonModule": true, // 추가된 부분
+    "composite": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
